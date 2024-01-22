@@ -1,0 +1,36 @@
+# --------------------------------------------------------------------
+# 기본 형태
+# from typing import Optional, List
+
+# from beanie import Document, Link
+# from pydantic import BaseModel, EmailStr
+
+# # 개발자 실수를 들어가는 field 제한
+# class User(Document):
+#     name: Optional[str] = None
+#     email: Optional[EmailStr] = None
+#     pswd: Optional[str] = None
+#     manager: Optional[str] = None
+#     sellist1 : Optional[str] = None
+#     text : Optional[str] = None
+  
+#     class Settings:
+#         name = "users"
+# --------------------------------------------------------------------
+
+from typing import Optional, List
+
+from beanie import Document, Link
+from pydantic import BaseModel, EmailStr
+
+# 개발자 실수를 들어가는 field 제한
+class User(Document):
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    pswd: Optional[str] = None
+    manager: Optional[str] = None
+    sellist1 : Optional[str] = None
+    text : Optional[str] = None
+  
+    class Settings:
+        name = "users"
