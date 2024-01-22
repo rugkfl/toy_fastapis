@@ -13,6 +13,15 @@ user_database = Database(User)
 
 
 # 회원가입(post : /)
+# http://127.0.0.1:8000/users_api
+# {
+#         "name": "홍길동",
+#         "email": "honggildong@example.com",
+#         "pswd": "safePassword123!",
+#         "manager": "김매니저",
+#         "sellist1": "옵션A",
+#         "text": "안녕하세요, 홍길동입니다."
+#     }
 @router.post("/")
 async def create_event(body: User) -> dict:
     document = await user_database.save(body)
@@ -23,6 +32,8 @@ async def create_event(body: User) -> dict:
 
 
 # 로그인(get : /{id}/{pswd})
+# http://127.0.0.1:8000/users_api/65ae23276275b6ae5417bc1a/safePassword123!
+
 @router.get("/{id}/{pswd}", response_model=User)
 async def retrieve_event(id: PydanticObjectId, pswd) -> User:
     user = await user_database.get(id)
@@ -41,6 +52,7 @@ async def retrieve_event(id: PydanticObjectId, pswd) -> User:
 
 
 # 회원탈퇴(delete : /{id})
+# http://127.0.0.1:8000/users_api/65ae23276275b6ae5417bc1a
 @router.delete("/{id}")
 async def delete_event(id: PydanticObjectId) -> dict:
     user = await user_database.get(id)
@@ -58,6 +70,7 @@ async def delete_event(id: PydanticObjectId) -> dict:
 
 
 # option -> 회원 수정(put :/{id})
+# http://127.0.0.1:8000/users_api/65ae23ac6275b6ae5417bc1b
 from fastapi import Request
 @router.put("/{id}", response_model=User)
 async def update_event_withjson(id: PydanticObjectId, request:Request) -> User:
