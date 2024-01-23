@@ -31,6 +31,7 @@ class User(Document):
     manager: Optional[str] = None
     sellist1 : Optional[str] = None
     text : Optional[str] = None
+    # text : str => Optional을 지우면 자체적으로 검열기능이 생김
   
     class Settings:
         name = "users"
